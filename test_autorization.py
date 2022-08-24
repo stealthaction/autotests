@@ -4,9 +4,23 @@ from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options as chrome_options
 import allure
+import pytest
 from allure_commons.types import AttachmentType
+@pytest.fixture
+def get_chrome_options():
+    options = chrome_options()
+    options.add_argument('chrome')
+    options.add_argument('--start-maximized')
+    return options
 
-driver = webdriver.Chrome()
+@pytest.fixture
+def get_webdriver(get_chrome_options):
+    options = get_chrome_options
+    driver = webdriver.Chrome(options=options)
+    return driver
+
+
+driver = get_webdriver
 
 driver.get('https://api.ratio2.dev2uit.ru/backend/user/index')
 print('Страница открыта')
