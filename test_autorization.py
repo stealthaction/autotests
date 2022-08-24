@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.options import Options as chrome_options
 import allure
 from allure_commons.types import AttachmentType
 
-driver = webdriver.Remote("http://127.0.0.1:4444/wd/hub", DesiredCapabilities.CHROME)
+driver = webdriver.Chrome()
 
 driver.get('https://api.ratio2.dev2uit.ru/backend/user/index')
 print('Страница открыта')
